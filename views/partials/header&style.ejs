@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="\Design\style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Online Shopper</title>
+    <style>
+        body{
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #52544a;
+        }
+        .footer {
+            position:relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            /* color: white; */
+            text-align: center;
+            margin-top: 20%;
+            clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 100%);
+        }
+        .bg-primary{
+            background: #52544a !important;
+        }
+        .bg-secondary{
+            background: #F1F2EC !important;
+        }
+        .dark-btn{
+            background-color: #282923;
+            color: #F1F2EC;
+        }
+        .bg-dark{
+            background-color: #282923 !important;
+        }
+        .v{
+            color: #F1F2EC !important;
+        }
+        /* 768px */
+        @media (min-width: 992px){
+            .menu{
+                display: none;
+            }
+        }
+        @media (max-width: 992px){
+            .c{
+                display: none;
+            }
+            .footer{
+                margin-top: 100%;
+            }
+        }
+        p,h5,h6{
+            text-align: left;
+            color: #F1F2EC !important;
+        }
+        label{
+            color: #F1F2EC;
+            font-weight: bold;
+        }
+        .m{
+            color: #52544a !important;
+        }
+        .logout{
+            color: red !important;
+        }
+        .navdiv  a{
+            color:#F1F2EC !important;
+        }
+        #update:hover{
+            background-color: lightblue;
+        }
+        #delete:hover{
+            background-color: red;
+        }
+        .pfooter{
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-secondary">
+    <!-- Navbar -->
+    <nav style="height: 64px;" class="navbar navbar-expand-lg bg-body-tertiary bg-primary mb-5">
+        <div class="container-fluid navdiv">
+            <a class="navbar-brand v" href="/"><span style="color: #F1F2EC;">Online Shopper</span></a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item c v">
+                    
+                </li>
+                <li class="nav-item c v">
+                    <a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        About us
+                    </a>
+                </li>
+                <% if(user){ %>
+                <li class="nav-item c v">
+                    <a class="nav-link active"  href="/">Explore</a>
+                </li>
+                <li class="nav-item c v">
+                    <a class="nav-link active"  href="/profile">My profile</a>
+                </li>
+                <li class="nav-item c v">
+                    <a class="nav-link active"  href="/userproducts">My products</a>
+                </li>
+                <li class="nav-item c v">
+                    <a class="nav-link active" href="/create">Add product</a>
+                    <% } %>
+                <li>
+                    <a  href="" class="menu btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </a>
+                </li>
+                <% if(!user){ %>
+                <li class="nav-item c">
+                    <a style="margin-right: 3px;" class="nav-link active v" href="/login">Login</a>
+                </li>
+                <li class="nav-item c">
+                    <a style="background-color: #282923;" class="btn v " href="/signup">Sign up</a>
+                </li>
+                <% }else{ %>
+                <li class="nav-item c">
+                    <a style="margin-right: 3px;" class="nav-link active v" href="/logout">Logout</a>
+                </li>
+            <% } %>
+            </ul>
+        </div>
+    </nav>
+        <!-- Side menu -->
+        <div class="offcanvas offcanvas-end bg-secondary" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title m" id="offcanvasRightLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <a class="btn m" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100%; color: #52544a;">
+                    About us
+                </a>
+                <br>
+                <br>
+                <% if(user){ %>
+                <a href="/profile"><p class="btn m" style="width: 100%; color: #52544a;">My profile</p></a>
+                <a href="/userproducts"><p class="btn m" style="width: 100%; color: #52544a;">My products</p></a>
+                <a href="/create"><p class="btn m" style="width: 100%; color: #52544a;">Add products</p></a>
+                <a href="/"><p class="btn m" style="width: 100%; color: #52544a;">Explore</p></a>
+                <% } %>
+                <!-- <a href=""><p class="btn disabled m" style="border-style: none; width: 100%; color: #52544a;">Language</p></a>
+                <a href=""><p class="btn disabled m" style="border-style: none; width: 100%; color: #52544a;">Settings</p></a> -->
+                <% if(!user){ %>
+                <a href="/login"><p class="btn menu m" style="width: 100%; color: #52544a;">login</p></a>
+                <a href="/signup"><p class="btn menu m" style="width: 100%; color: #52544a;">Sign up</p></a>
+                <% }else{ %>
+                <a href="/logout"><p class="btn logout" style="width: 100%;">Log out</p></a>
+                <% } %>
+            </div>
+        </div>
+    <!-- Modal -->
+    <div class="modal fade modal-dialog-scrollable" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">About us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <span style="color: #52544a;">
+                        Hello there. 
+                        <br>
+                        We are senior computer science students at imam university, And this website is our project for web application development course, hope you like it!
+                        <hr style="color: #52544a;">
+                        Team members:
+                        <br>
+                        Abdulhadi Alharbi - 441013828
+                        <br>
+                        Abdullah Alolayan - 441013149
+                        <br>
+                        Yamen Hijazi - 441014400
+                        <br>
+                        Abdulaziz Althuwayni - 441013735
+                        </span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

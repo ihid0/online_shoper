@@ -1,0 +1,30 @@
+<%- include ('../partials/header&style.ejs') -%> 
+
+<!-- My poduct Page content -->  
+<div class="container mt-5">  
+    <h2 align="center" class="mb-5" style="color:#52544a;">My Products</h2>
+    <div style="border-radius: 10px;" class="col-sm-12 bg-secondary mt-5 p-5">
+        <div class="row">
+            <% product.forEach(prod =>{  %>
+                <% if(user && user.id == prod.userId){ %>
+            <div align="center" class="col-sm-6 col-lg-4 p-0 mb-5">
+                <div class="card p-1 bg-primary" style="width: 18rem; height: 100%; border:#282923 solid 3px;">
+                    <% if(prod.image == "" || prod.image == undefined){ %>
+                        <img src="\images\alt_image.png" alt="" style="border-radius: 10px;">
+                        <% }else{ %>
+                            <img src="/images/<%=prod.image%>" alt="" style="border-radius: 10px;"  height="250" width="277px">
+                            <% } %> 
+                    <div class="card-body mt-1">
+                        <h5 class="card-title"><%= prod.title%></h5>
+                        <p style="border: solid #F1F2EC 1px; border-radius: 3px; height: 200px;" class="card-text p-2"><%= prod.description%></p>
+                        <a style="margin-top: auto; background-color: #282923; color: #F1F2EC;" href="/details/<%=prod._id%>" class="btn">More details</a>
+                    </div>
+                </div>
+            </div>
+            <%}})%>
+        </div>
+    </div>
+</div>
+
+<%- include ('../partials/footer.ejs') -%>
+

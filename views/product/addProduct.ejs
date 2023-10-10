@@ -1,0 +1,29 @@
+<%- include ('../partials/header&style.ejs') -%>
+
+<div class="container mt-5">
+    <h2>Add new product</h2>
+    <div style="border-radius: 10px;" class="col-sm-12 bg-primary mt-5 p-5">
+        <form action="/create" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input id="title" name="title" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Product description:</label>
+                <input  id="description" name="description" type="textarea" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input  id="price" name="price" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City:</label>
+                <input  id="city" name="city" type="text" class="form-control" required>
+            </div>
+            <br><br>
+            <button style="background-color: #282923; height: 56.5; width: 87.5;" type="submit" class="btn v">Save</button>
+        </form>
+    </div>
+</div>
+
+<%- include ('../partials/footer.ejs') -%>

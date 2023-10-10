@@ -1,0 +1,72 @@
+    <%- include ('../views/partials/header&style.ejs') -%>
+
+    <% if(user){ %>
+    <div class="container mt-5">
+        <h2 align="center" class="mb-5" style="color:#52544a;">Explore</h2>
+        
+        <div style="border-radius: 10px;" class="col-sm-12 bg-secondary mt-5 p-5">
+            <% if(message && message != "") { %>
+                <div class="alert alert-success">
+                    <%= message %>
+                </div>
+                <% } %>
+                <div align="center" class="col-sm-6 col-lg-4 p-0 mb-5" style="height: auto;">
+                    <div>
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for product.." title="Type in a name" style="height: 36px; border-radius: 5px;">
+                        <button style="height: 35px; color: #282923; border: #282923 solid 1px;" class="btn " type="submit">Search</button>
+                    </div>
+                </div>
+            <ul id="myUL">
+            <div class="row">
+                <% product.forEach(prod =>{  %>
+                    <%  %>
+                <div align="center" class="col-sm-6 col-lg-4 p-0 mb-5" style="height: auto;">
+                    <div class="card p-1 bg-primary" style="width: 18rem; height: 100%; border:#282923 solid 3px; border-radius: 10px;" >
+                        <% if(prod.image == "" || prod.image == undefined){ %>
+                        <img src="\images\alt_image.png" alt="" style="border-radius: 10px;">
+                        <% }else{ %>
+                            <img src="/images/<%=prod.image%>" alt="" style="border-radius: 10px;" height="250" width="277px">
+                            <% } %> 
+                        <div class="card-body mt-1">
+                            <h5 name="h5" class="card-title"><%= prod.title%></h5>
+                            <p style="border: solid #F1F2EC 1px; border-radius: 10px; height: 200px; overflow: auto;" class="card-text p-2"><%= prod.description%></p>
+                            <a style="bottom: 0; background-color: #282923; color: #F1F2EC;" href="/details/<%=prod._id%>" class="btn">More details</a>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+            </div>
+        </ul>
+        </div>
+    </div>
+    <% }else{ %>
+    <div class="container mt-5">
+        <h1>Welcome to our <b>CS346</b> course website project!</h1><br>
+        <h2>First, You need to login or create new account to access all the features.</h2><br>
+        <form action="/signup" method="GET">
+            <button style="color: #F1F2EC;" align="center" type="submit" class="btn btn-lg bg-primary">Get started</button>
+        </form>
+    </div>
+    <% } %>
+
+    <script>
+    function myFunction() {
+        var input, filter, ul, div, h5, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        div = ul.getElementsByTagName("div");
+        for (i = 0; i < div.length; i++) {
+            h5 = div[i].getElementsByTagName("h5")[0];
+            txtValue = h5.textContent || h5.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div[i].style.display = "";
+            } else {
+                div[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+
+    <%- include ('../views/partials/footer.ejs') -%>
+

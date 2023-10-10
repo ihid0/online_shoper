@@ -1,0 +1,23 @@
+<%- include ('../partials/header&style.ejs') -%>
+
+    <div class="container mt-5">
+        <h2>Profile</h2>
+        <% if(success && success != "") { %>
+            <div class="alert alert-success">
+            <%= success %>
+            </div>
+        <% } %>
+        <div style="border-radius: 10px;" class="col-sm-12 bg-primary mt-5 p-3">
+            <div class="card bg-primary" >
+                <div class="card-body">
+                    <h5 class="card-title">Username: <%= user.username  %></h5>
+                    <hr style="color: white;">
+                    <h5 class="card-title">Email: <%= user.email  %></h5>
+                    <hr style="color: white;">
+                    <h5 class="card-title">Phone number: <%= user.phonenumber  %></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include ('../partials/footer.ejs') -%>
